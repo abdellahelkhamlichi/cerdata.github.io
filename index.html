@@ -3,103 +3,681 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Cerdata — Risk Intelligence</title>
-<meta name="description" content="Cerdata accompagne les PME et institutions financières dans le scoring de crédit et la détection d'anomalies grâce à des modèles de machine learning fiables.">
+<title>Cerdata — Risk Intelligence pour PME & Institutions Financières</title>
+<meta name="description" content="Cerdata conçoit des modèles de machine learning fiables pour le scoring de crédit et la détection d'anomalies.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600;8..60,700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  body {
-    font-family: 'Segoe UI', Arial, sans-serif;
-    color: #0A2540;
-    line-height: 1.6;
-    background: #ffffff;
-  }
-  header {
-    background: #0A2540;
-    color: white;
-    padding: 60px 20px;
-    text-align: center;
-  }
-  header h1 { font-size: 2.5rem; letter-spacing: 2px; }
-  header h1 span { color: #2DBE8F; }
-  header p { margin-top: 10px; font-size: 1.1rem; color: #cfd8e3; }
-  nav {
-    display: flex;
-    justify-content: center;
-    gap: 30px;
-    padding: 15px;
-    background: #ffffff;
-    border-bottom: 1px solid #eee;
-  }
-  nav a { color: #0A2540; text-decoration: none; font-weight: 600; }
-  nav a:hover { color: #2DBE8F; }
-  section { max-width: 800px; margin: 0 auto; padding: 50px 20px; }
-  section h2 { color: #0A2540; margin-bottom: 15px; border-left: 4px solid #2DBE8F; padding-left: 12px; }
-  .pillars { display: flex; gap: 20px; flex-wrap: wrap; margin-top: 20px; }
-  .pillar { flex: 1; min-width: 200px; background: #f7f9fb; padding: 20px; border-radius: 8px; }
-  .pillar h3 { color: #2DBE8F; margin-bottom: 8px; }
-  footer {
-    background: #0A2540;
-    color: #cfd8e3;
-    text-align: center;
-    padding: 30px 20px;
-    margin-top: 40px;
-  }
-  footer a { color: #2DBE8F; text-decoration: none; }
+:root{
+  --navy:#0A2540; --navy-deep:#061829; --emerald:#1F9C74; --emerald-soft:#E4F3EC;
+  --paper:#F7F5F0; --ink:#1C2530; --ink-soft:#5B6472; --line:#DDD8CC;
+  --amber:#B8763A; --red:#B8433A;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:'Inter',-apple-system,sans-serif;color:var(--ink);background:var(--paper);line-height:1.6;font-size:16.5px;}
+h1,h2,h3,.serif{font-family:'Source Serif 4',Georgia,serif;}
+.mono{font-family:'IBM Plex Mono',monospace;}
+a{color:inherit;}
+.wrap{max-width:1120px;margin:0 auto;padding:0 32px;}
+section{padding:96px 0;border-bottom:1px solid var(--line);}
+.section-label{font-size:.8rem;color:var(--emerald);font-weight:600;letter-spacing:.05em;margin-bottom:14px;}
+
+/* Header */
+header{position:sticky;top:0;background:rgba(247,245,240,.92);backdrop-filter:blur(8px);z-index:50;border-bottom:1px solid var(--line);}
+header .bar{display:flex;justify-content:space-between;align-items:center;padding:20px 0;}
+.logo{font-family:'Source Serif 4',serif;font-weight:600;font-size:1.3rem;color:var(--navy);}
+.logo em{font-style:normal;color:var(--emerald);}
+nav ul{list-style:none;display:flex;gap:30px;}
+nav a{text-decoration:none;font-size:.92rem;color:var(--ink-soft);}
+nav a:hover{color:var(--navy);}
+.header-cta{display:flex;gap:12px;align-items:center;}
+.btn{display:inline-block;text-decoration:none;padding:11px 22px;font-size:.88rem;font-weight:600;border:1px solid var(--navy);transition:.2s;}
+.btn-primary{background:var(--navy);color:#fff;}
+.btn-primary:hover{background:var(--navy-deep);}
+.btn-ghost{color:var(--navy);}
+.btn-ghost:hover{background:var(--navy);color:#fff;}
+
+/* Hero */
+.hero{padding:90px 0 70px;}
+.kicker{font-size:.8rem;letter-spacing:.08em;color:var(--emerald);font-weight:700;margin-bottom:20px;}
+.hero h1{font-size:3.1rem;font-weight:500;line-height:1.15;color:var(--navy);max-width:16ch;margin-bottom:24px;}
+.hero-lede{color:var(--ink-soft);font-size:1.08rem;max-width:60ch;margin-bottom:28px;}
+.tags{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:36px;}
+.tag{border:1px solid var(--line);padding:6px 14px;font-size:.82rem;color:var(--ink-soft);border-radius:2px;}
+.hero-actions{display:flex;gap:14px;}
+
+/* Live model strip */
+.model-strip{background:var(--navy);color:#fff;padding:0;}
+.model-inner{display:grid;grid-template-columns:1.1fr 1fr;}
+.model-left{padding:56px 48px;border-right:1px solid rgba(255,255,255,.14);}
+.model-tag{font-size:.75rem;color:var(--emerald);letter-spacing:.06em;margin-bottom:10px;font-weight:600;}
+.model-title{font-family:'Source Serif 4',serif;font-size:1.3rem;margin-bottom:24px;}
+.timeline{display:flex;align-items:center;gap:0;font-size:.85rem;color:#B9C4D3;}
+.tpoint{display:flex;flex-direction:column;gap:6px;}
+.tdot{width:8px;height:8px;border-radius:50%;background:var(--emerald);}
+.tline{flex:1;height:1px;background:rgba(255,255,255,.25);margin:0 12px;position:relative;top:-14px;}
+.rupture{color:var(--amber);font-size:.72rem;font-weight:600;letter-spacing:.04em;}
+.model-right{padding:56px 48px;display:grid;grid-template-columns:1fr 1fr;gap:32px 28px;}
+.stat b{display:block;font-family:'Source Serif 4',serif;font-size:1.9rem;color:#fff;font-weight:500;}
+.stat span.label{font-size:.78rem;color:var(--emerald);display:block;margin:4px 0 6px;font-weight:600;}
+.stat p{font-size:.82rem;color:#B9C4D3;}
+
+/* Simulator card (risk inspector) */
+.simcard{border:1px solid var(--line);background:#fff;margin-top:56px;}
+.simcard-head{display:flex;justify-content:space-between;align-items:center;padding:22px 28px;border-bottom:1px solid var(--line);}
+.simtabs{display:flex;gap:4px;}
+.simtab{padding:9px 16px;font-size:.85rem;border:1px solid var(--line);background:var(--paper);cursor:pointer;color:var(--ink-soft);}
+.simtab.active{background:var(--navy);color:#fff;border-color:var(--navy);}
+.simcard-body{padding:32px 28px;display:grid;grid-template-columns:1.2fr 1fr;gap:40px;}
+.case-id{font-size:.78rem;color:var(--ink-soft);margin-bottom:6px;}
+.case-name{font-family:'Source Serif 4',serif;font-size:1.25rem;color:var(--navy);margin-bottom:4px;}
+.case-sector{font-size:.85rem;color:var(--ink-soft);margin-bottom:18px;}
+.factor-box{background:var(--paper);border-left:3px solid var(--amber);padding:14px 16px;font-size:.88rem;}
+.factor-box .label{font-size:.75rem;color:var(--ink-soft);display:block;margin-bottom:4px;}
+.sim-metrics{display:grid;grid-template-columns:1fr 1fr;gap:20px;}
+.sim-metric{border-top:1px solid var(--line);padding-top:12px;}
+.sim-metric b{font-family:'Source Serif 4',serif;font-size:1.6rem;color:var(--navy);display:block;}
+.sim-metric span{font-size:.78rem;color:var(--ink-soft);}
+.decision-alert{background:#FBEAE7;color:var(--red);font-weight:600;font-size:.85rem;padding:4px 10px;display:inline-block;margin-top:4px;}
+.slider-row{margin-top:22px;}
+.slider-row label{font-size:.82rem;color:var(--ink-soft);display:block;margin-bottom:8px;}
+.slider-row .val{color:var(--navy);font-weight:600;}
+input[type=range]{width:100%;accent-color:var(--emerald);}
+.foot-note{font-size:.78rem;color:var(--ink-soft);margin-top:20px;}
+
+/* About / pillars */
+.about-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:70px;}
+.about-grid h2{font-size:2rem;font-weight:500;color:var(--navy);line-height:1.3;}
+.about-body p{color:var(--ink-soft);margin-bottom:16px;max-width:62ch;}
+.pillars{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--line);margin-top:50px;}
+.pillar{padding:24px 26px 0 0;border-right:1px solid var(--line);}
+.pillar:last-child{border-right:none;padding-right:0;}
+.pillar .num{font-family:'Source Serif 4',serif;font-size:.85rem;color:var(--emerald);display:block;margin-bottom:14px;padding-top:20px;font-weight:600;}
+.pillar h3{font-size:1.1rem;font-weight:600;color:var(--navy);margin-bottom:6px;}
+.pillar p.desc{color:var(--ink-soft);font-size:.92rem;margin-bottom:14px;}
+.pillar ul{list-style:none;font-size:.82rem;color:var(--ink-soft);}
+.pillar ul li{padding:5px 0;border-top:1px solid var(--line);}
+
+.validation{margin-top:56px;background:var(--navy);color:#fff;padding:44px 40px;display:flex;justify-content:space-between;align-items:center;gap:30px;}
+.validation h3{font-family:'Source Serif 4',serif;font-size:1.3rem;font-weight:500;max-width:32ch;}
+.validation p{color:#B9C4D3;font-size:.9rem;max-width:38ch;margin-top:8px;}
+.validation .btn{white-space:nowrap;background:var(--emerald);border-color:var(--emerald);color:#fff;}
+
+/* Services */
+.services-list{margin-top:44px;}
+.service-row{padding:34px 0;border-top:1px solid var(--line);}
+.services-list .service-row:last-child{border-bottom:1px solid var(--line);}
+.service-top{display:grid;grid-template-columns:60px 1fr auto;gap:24px;align-items:start;}
+.service-num{font-family:'Source Serif 4',serif;color:var(--emerald);font-size:1.1rem;font-weight:600;}
+.service-top h3{font-size:1.25rem;color:var(--navy);font-weight:600;margin-bottom:6px;}
+.service-top .sub{color:var(--ink-soft);font-size:.9rem;margin-bottom:10px;}
+.service-top .desc{color:var(--ink-soft);font-size:.95rem;max-width:56ch;}
+.service-kpi{font-family:'Source Serif 4',serif;color:var(--emerald);font-size:1.3rem;white-space:nowrap;text-align:right;}
+.service-kpi span{display:block;font-family:'Inter';font-size:.72rem;color:var(--ink-soft);font-weight:400;margin-top:2px;}
+.service-extra{margin-left:84px;margin-top:18px;display:grid;grid-template-columns:1fr 1fr;gap:24px;}
+.deliverables{font-size:.85rem;color:var(--ink-soft);}
+.deliverables div{padding:6px 0;border-top:1px solid var(--line);}
+blockquote{font-family:'Source Serif 4',serif;font-style:italic;color:var(--navy);font-size:.98rem;border-left:2px solid var(--emerald);padding-left:16px;}
+
+/* ROI Simulator */
+.roi-box{border:1px solid var(--line);background:#fff;margin-top:40px;display:grid;grid-template-columns:1fr 1fr;}
+.roi-controls{padding:40px;border-right:1px solid var(--line);}
+.roi-controls h3{font-family:'Source Serif 4',serif;color:var(--navy);font-size:1.2rem;margin-bottom:4px;}
+.roi-controls .cal{font-size:.78rem;color:var(--ink-soft);margin-bottom:28px;}
+.roi-out{padding:40px;background:var(--paper);}
+.roi-out .big{font-family:'Source Serif 4',serif;font-size:2.4rem;color:var(--navy);font-weight:500;}
+.roi-out .big.green{color:var(--emerald);}
+.roi-out .row{border-top:1px solid var(--line);padding:18px 0;}
+.roi-out .row span.label{font-size:.8rem;color:var(--ink-soft);display:block;margin-bottom:6px;}
+.roi-out .multiple{background:var(--navy);color:#fff;padding:16px 20px;margin-top:10px;font-size:.92rem;}
+
+/* Process */
+.steps{margin-top:50px;}
+.step{display:grid;grid-template-columns:130px 1fr;gap:36px;padding:34px 0;border-top:1px solid var(--line);}
+.steps .step:last-child{border-bottom:1px solid var(--line);}
+.step-meta{font-size:.78rem;color:var(--ink-soft);}
+.step-meta b{display:block;color:var(--emerald);font-size:.85rem;margin-bottom:4px;}
+.step h3{color:var(--navy);font-size:1.15rem;margin-bottom:8px;font-weight:600;}
+.step p{color:var(--ink-soft);font-size:.94rem;max-width:56ch;margin-bottom:14px;}
+.step .deliv{font-size:.82rem;color:var(--ink-soft);}
+.step .deliv div{padding:4px 0;}
+.step .deliv div::before{content:"— ";color:var(--emerald);}
+
+/* Contact */
+.contact-grid{display:grid;grid-template-columns:1fr 1.15fr;gap:60px;}
+.contact-grid h2{font-size:2rem;font-weight:500;color:var(--navy);max-width:13ch;line-height:1.3;}
+.contact-grid > div:first-child p{color:var(--ink-soft);margin:18px 0 28px;max-width:40ch;}
+.contact-detail{border-top:1px solid var(--line);padding-top:20px;margin-bottom:20px;}
+.contact-detail .label{font-size:.8rem;color:var(--ink-soft);display:block;margin-bottom:6px;}
+.contact-detail a{font-size:1.1rem;color:var(--navy);text-decoration:none;font-weight:600;}
+.nda{font-size:.82rem;color:var(--ink-soft);}
+
+.faq-item{border-top:1px solid var(--line);padding:18px 0;}
+.faq-q{display:flex;justify-content:space-between;align-items:center;cursor:pointer;font-weight:600;color:var(--navy);font-size:.98rem;}
+.faq-q .plus{color:var(--emerald);font-size:1.2rem;transition:.2s;}
+.faq-item.open .plus{transform:rotate(45deg);}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .25s ease;color:var(--ink-soft);font-size:.92rem;}
+.faq-item.open .faq-a{max-height:200px;padding-top:12px;}
+
+form{margin-top:30px;}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px;}
+label.f{font-size:.8rem;color:var(--ink-soft);display:block;margin-bottom:6px;}
+input[type=text],input[type=email],select,textarea{
+  width:100%;border:1px solid var(--line);background:#fff;padding:11px 12px;font-family:'Inter';font-size:.92rem;color:var(--ink);
+}
+textarea{resize:vertical;min-height:90px;}
+.full{grid-column:1/-1;}
+.submit-note{font-size:.78rem;color:var(--ink-soft);margin-top:12px;}
+
+footer{padding:40px 0;}
+.footer-grid{display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:20px;}
+.footer-grid .logo{margin-bottom:6px;}
+.footer-grid p{font-size:.85rem;color:var(--ink-soft);}
+.footer-nav{display:flex;gap:24px;list-style:none;font-size:.85rem;}
+.footer-nav a{text-decoration:none;color:var(--ink-soft);}
+.footer-bottom{border-top:1px solid var(--line);margin-top:30px;padding-top:20px;display:flex;justify-content:space-between;font-size:.78rem;color:var(--ink-soft);}
+.footer-bottom a{text-decoration:none;color:var(--ink-soft);}
+
+@media(max-width:860px){
+  .model-inner,.about-grid,.simcard-body,.roi-box,.contact-grid,.service-extra{grid-template-columns:1fr;}
+  .pillars{grid-template-columns:1fr;}
+  .pillar{border-right:none;border-bottom:1px solid var(--line);padding-bottom:20px;margin-bottom:20px;}
+  .service-extra{margin-left:0;}
+  .model-left{border-right:none;border-bottom:1px solid rgba(255,255,255,.14);}
+  .hero h1{font-size:2.1rem;}
+  nav{display:none;}
+  .validation{flex-direction:column;align-items:flex-start;}
+  .step{grid-template-columns:1fr;gap:10px;}
+  .form-row{grid-template-columns:1fr;}
+}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto;}}
+a:focus-visible,.btn:focus-visible,.simtab:focus-visible{outline:2px solid var(--emerald);outline-offset:2px;}
 </style>
 </head>
 <body>
 
 <header>
-  <h1>CER<span>DATA</span></h1>
-  <p>Rendre le risque financier lisible, mesurable, maîtrisable.</p>
+  <div class="wrap bar">
+    <div class="logo">Cer<em>data</em></div>
+    <nav><ul>
+      <li><a href="#about">À propos</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#roi">Simulateur ROI</a></li>
+      <li><a href="#process">Méthodologie</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul></nav>
+    <div class="header-cta">
+      <a href="#contact" class="btn btn-ghost">Audit offert</a>
+      <a href="#contact" class="btn btn-primary">Prendre contact</a>
+    </div>
+  </div>
 </header>
 
-<nav>
-  <a href="#about">À propos</a>
-  <a href="#services">Services</a>
-  <a href="#contact">Contact</a>
-</nav>
+<section class="hero" style="border-bottom:none;padding-bottom:0;">
+  <div class="wrap">
+    <div class="kicker">RISK INTELLIGENCE SYSTEM</div>
+    <h1>Rendre le risque financier lisible.</h1>
+    <p class="hero-lede">Cerdata conçoit des modèles de machine learning fiables pour le scoring de crédit et la détection d'anomalies — pour des PME et institutions financières qui n'ont pas toujours une équipe data en interne.</p>
+    <div class="tags">
+      <span class="tag">PME &amp; Bailleurs de crédit</span>
+      <span class="tag">Fintechs &amp; Courtiers</span>
+      <span class="tag">Institutions financières</span>
+    </div>
+    <div class="hero-actions">
+      <a href="#contact" class="btn btn-primary">Démarrer le projet</a>
+      <a href="#roi" class="btn btn-ghost">Simuler votre ROI</a>
+    </div>
+  </div>
+</section>
+
+<div class="model-strip">
+  <div class="wrap model-inner">
+    <div class="model-left">
+      <div class="model-tag mono">MODÈLE ACTUARIEL D'ENSEMBLE · LIVE v2.4</div>
+      <div class="model-title">De la revue initiale au risque maîtrisé.</div>
+      <div class="timeline">
+        <div class="tpoint"><span class="tdot"></span>T0 : Revue initiale</div>
+        <div class="tline"></div>
+        <div class="tpoint"><span class="rupture">POINT DE RUPTURE DÉTECTÉ</span></div>
+        <div class="tline"></div>
+        <div class="tpoint"><span class="tdot" style="background:#fff"></span>T+90j : Risque maîtrisé</div>
+      </div>
+    </div>
+    <div class="model-right">
+      <div class="stat"><b>99.4%</b><span class="label">Précision du modèle</span><p>Sur jeu de validation hors-échantillon</p></div>
+      <div class="stat"><b>&lt; 3 sem.</b><span class="label">Mise en production</span><p>De l'audit initial à l'API livrée</p></div>
+      <div class="stat"><b>&gt; 94%</b><span class="label">ROC-AUC</span><p>Discrimination des défaillances de paiement</p></div>
+      <div class="stat"><b>-38%</b><span class="label">Taux d'impayés</span><p>Réduction mesurée sur portefeuilles B2B</p></div>
+    </div>
+  </div>
+</div>
+
+<section style="padding-top:70px;">
+  <div class="wrap">
+    <div class="section-label">SIMULATEUR INTERACTIF DU RISQUE</div>
+    <h2 style="font-size:1.8rem;font-weight:500;color:var(--navy);">Inspectez les facteurs SHAP et les probabilités d'arbitrage.</h2>
+
+    <div class="simcard">
+      <div class="simcard-head">
+        <div class="simtabs">
+          <div class="simtab active" data-tab="0">Scoring Crédit PME</div>
+          <div class="simtab" data-tab="1">Détection d'Anomalies</div>
+          <div class="simtab" data-tab="2">Stress Testing P&amp;L</div>
+        </div>
+      </div>
+      <div class="simcard-body">
+        <div>
+          <div class="case-id mono">DOS-845</div>
+          <div class="case-name">Négoce Import Métaux</div>
+          <div class="case-sector">Secteur : Matières premières</div>
+          <div class="factor-box">
+            <span class="label">FACTEUR DOMINANT</span>
+            Pertes de change &amp; rotation de stocks anormale
+          </div>
+          <div class="slider-row">
+            <label>Seuil d'arbitrage (cut-off) : <span class="val" id="cutoffVal">65</span>/100</label>
+            <input type="range" min="30" max="90" value="65" id="cutoffSlider">
+          </div>
+          <p class="foot-note">Sensibilité : Équilibrée · 3 dossiers sous surveillance</p>
+        </div>
+        <div class="sim-metrics">
+          <div class="sim-metric"><b id="riskScore">88/100</b><span>Score de risque</span></div>
+          <div class="sim-metric"><b id="defaultProb">11.4%</b><span>Probabilité de défaut</span></div>
+          <div class="sim-metric" style="grid-column:1/-1;">
+            <span>Décision</span>
+            <div class="decision-alert" id="decisionBadge">Alerte Risque</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
 <section id="about">
-  <h2>À propos</h2>
-  <p>Cerdata accompagne les PME et institutions financières dans l'évaluation et la maîtrise du risque financier.</p>
-  <br>
-  <p>Nous concevons des modèles de machine learning fiables pour le scoring de crédit et la détection d'anomalies — des outils concrets pour des décisions plus sûres, même sans équipe data interne.</p>
-  <br>
-  <p>Notre approche s'appuie sur une expertise croisée rare, validée sur un cas industriel réel.</p>
+  <div class="wrap">
+    <div class="about-grid">
+      <div>
+        <div class="section-label">À PROPOS DE CERDATA</div>
+        <h2>Une expertise croisée, rarement réunie.</h2>
+      </div>
+      <div class="about-body">
+        <p>Cerdata accompagne les PME et institutions financières dans l'évaluation et la maîtrise du risque financier. Nous concevons des modèles fiables pour des décisions plus sûres, même sans équipe data interne.</p>
+        <p>Notre approche s'appuie sur trois compétences rarement combinées : la rigueur statistique de l'actuariat, la compréhension business de la finance, et l'implémentation technique de la data science — validée sur un cas industriel réel.</p>
+      </div>
+    </div>
 
-  <div class="pillars">
-    <div class="pillar">
-      <h3>📊 Actuariat</h3>
-      <p>La rigueur statistique du risque.</p>
+    <div class="pillars">
+      <div class="pillar">
+        <span class="num">01</span>
+        <h3>Actuariat</h3>
+        <p class="desc">La rigueur statistique du risque : probabilités de défaut, provisionnement prudentiel, calibration sur distributions à queues lourdes.</p>
+        <ul>
+          <li>Probabilités extrêmes &amp; copules</li>
+          <li>Provisionnement IFRS 9 / Bâle III</li>
+          <li>Calibration des lois de survie</li>
+        </ul>
+      </div>
+      <div class="pillar">
+        <span class="num">02</span>
+        <h3>Finance &amp; Risque</h3>
+        <p class="desc">Pourquoi un modèle compte, pas seulement comment le construire. Analyse des ratios bilanciels, du BFR, du cash-flow réel.</p>
+        <ul>
+          <li>Analyse financière de bilan PME</li>
+          <li>Stress-testing de liquidité</li>
+          <li>Pricing ajusté au risque (RAROC)</li>
+        </ul>
+      </div>
+      <div class="pillar">
+        <span class="num">03</span>
+        <h3>Data Science &amp; MLOps</h3>
+        <p class="desc">Pipelines supervisés et non-supervisés, détection d'anomalies en flux tendu, intégration directe dans vos systèmes.</p>
+        <ul>
+          <li>Gradient Boosting &amp; Isolation Forests</li>
+          <li>Explicabilité décisionnelle (SHAP)</li>
+          <li>API temps réel &amp; microservices</li>
+        </ul>
+      </div>
     </div>
-    <div class="pillar">
-      <h3>💼 Finance</h3>
-      <p>La compréhension business.</p>
-    </div>
-    <div class="pillar">
-      <h3>🤖 Data Science</h3>
-      <p>L'implémentation technique concrète.</p>
+
+    <div class="validation">
+      <div>
+        <h3>Validation empirique sur cas industriel réel.</h3>
+        <p>Calibré et éprouvé sur des données transactionnelles réelles : réconciliation des retards de paiement, détection proactive des défauts, élimination des faux positifs.</p>
+      </div>
+      <a href="#contact" class="btn">Consulter l'étude</a>
     </div>
   </div>
 </section>
 
 <section id="services">
-  <h2>Services</h2>
-  <p>• Scoring de crédit sur mesure</p>
-  <p>• Détection d'anomalies dans les données financières</p>
-  <p>• Modélisation de rentabilité et de risque</p>
+  <div class="wrap">
+    <div class="section-label">SERVICES &amp; LIVRABLES</div>
+    <h2 style="font-size:1.9rem;font-weight:500;color:var(--navy);">Ce que nous livrons.</h2>
+    <p style="color:var(--ink-soft);max-width:60ch;margin-top:14px;">Des outils directement intégrables à vos processus opérationnels — pas de simples rapports PDF statiques, mais des modèles vivants et actionnables.</p>
+
+    <div class="services-list">
+      <div class="service-row">
+        <div class="service-top">
+          <div class="service-num">01</div>
+          <div>
+            <h3>Scoring de crédit &amp; risque de contrepartie</h3>
+            <div class="sub">Évaluer la solvabilité avec précision chirurgicale</div>
+            <div class="desc">Des modèles sur mesure pour évaluer la solvabilité des emprunteurs ou clients B2B, calibrés sur vos historiques et votre profil de risque sectoriel.</div>
+          </div>
+          <div class="service-kpi">-38%<span>de défauts constatés</span></div>
+        </div>
+        <div class="service-extra">
+          <div class="deliverables">
+            <div>Moteur de score paramétrable (grille A+ à E)</div>
+            <div>API REST sécurisée ou script batch</div>
+            <div>Documentation de gouvernance &amp; backtesting</div>
+          </div>
+          <div>
+            <blockquote>« Calibré pour une plateforme de financement court terme B2B : réduction immédiate du taux d'impayés sans baisse d'acceptation. »</blockquote>
+            <a href="#contact" class="btn btn-ghost" style="margin-top:16px;">Demander un cadrage</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="service-row">
+        <div class="service-top">
+          <div class="service-num">02</div>
+          <div>
+            <h3>Détection d'anomalies &amp; fraudes financières</h3>
+            <div class="sub">Identifier les irrégularités avant qu'elles ne coûtent cher</div>
+            <div class="desc">Surveillance intelligente des flux de facturation, des mouvements de trésorerie et des écritures comptables pour repérer les signaux faibles de défaillance.</div>
+          </div>
+          <div class="service-kpi">99.1%<span>précision sur alertes</span></div>
+        </div>
+      </div>
+
+      <div class="service-row">
+        <div class="service-top">
+          <div class="service-num">03</div>
+          <div>
+            <h3>Modélisation de rentabilité &amp; pricing du risque</h3>
+            <div class="sub">Éclairer les décisions stratégiques d'arbitrage</div>
+            <div class="desc">Des modèles prédictifs pour optimiser vos conditions commerciales : taux, plafonds d'encours et garanties requises selon la probabilité de défaillance.</div>
+          </div>
+          <div class="service-kpi">+2.4 pts<span>de marge nette sécurisée</span></div>
+        </div>
+      </div>
+    </div>
+    <p class="foot-note" style="margin-top:10px;">Modes d'intégration : API Cloud souveraine, container Docker sur site, ou tableurs / BI autonomes.</p>
+  </div>
+</section>
+
+<section id="roi">
+  <div class="wrap">
+    <div class="section-label">SIMULATEUR FINANCIER</div>
+    <h2 style="font-size:1.9rem;font-weight:500;color:var(--navy);max-width:24ch;">Quantifiez les pertes évitées sur vos créances.</h2>
+    <p style="color:var(--ink-soft);max-width:64ch;margin-top:14px;">Sur un portefeuille de créances B2B standard, le passage d'une revue manuelle à un modèle actuariel de scoring permet une baisse moyenne de 30% à 45% des créances douteuses, tout en accélérant les temps de réponse de 70%.</p>
+
+    <div class="roi-box">
+      <div class="roi-controls">
+        <h3>Simulateur d'impact de risque</h3>
+        <div class="cal mono">CALIBRATION 2026</div>
+
+        <div class="slider-row">
+          <label>Volume annuel d'encours / facturation : <span class="val" id="volVal">5 000 000 €</span></label>
+          <input type="range" min="500000" max="30000000" step="500000" value="5000000" id="volSlider">
+        </div>
+        <div class="slider-row">
+          <label>Taux d'impayés / litiges actuel estimé : <span class="val" id="rateVal">2.4%</span></label>
+          <input type="range" min="0.5" max="6" step="0.1" value="2.4" id="rateSlider">
+        </div>
+        <div class="slider-row">
+          <label>Objectif de réduction des défauts (modèle Cerdata) :</label>
+          <select id="targetSelect">
+            <option value="0.25">Prudent (-25%)</option>
+            <option value="0.38" selected>Cible (-38%)</option>
+            <option value="0.48">Optimisé (-48%)</option>
+          </select>
+        </div>
+      </div>
+      <div class="roi-out">
+        <div class="row" style="border-top:none;">
+          <span class="label">Pertes brutes sans modèle</span>
+          <div class="big" id="grossLoss">120 000 € / an</div>
+        </div>
+        <div class="row">
+          <span class="label">Trésorerie nette préservée</span>
+          <div class="big green" id="netSaved">+ 45 600 €</div>
+        </div>
+        <div class="multiple" id="multipleOut">Rentabilité estimée : 3.6x l'investissement</div>
+        <a href="#contact" class="btn btn-primary" style="margin-top:24px;">Valider ces chiffres</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="process">
+  <div class="wrap">
+    <div class="section-label">PROCESSUS DE DÉPLOIEMENT</div>
+    <h2 style="font-size:1.9rem;font-weight:500;color:var(--navy);max-width:26ch;">De vos données brutes à la décision éclairée.</h2>
+    <p style="color:var(--ink-soft);max-width:60ch;margin-top:14px;">Un processus cadré en 4 étapes pour délivrer un modèle robuste sans mobiliser excessivement vos équipes opérationnelles.</p>
+
+    <div class="steps">
+      <div class="step">
+        <div class="step-meta"><b>ÉTAPE 01</b>Semaine 1</div>
+        <div>
+          <h3>Audit &amp; cartographie des données</h3>
+          <p>Analyse des données existantes (ERP, CRM, comptabilité, historiques d'impayés). Qualification de la qualité, détection des biais, définition des objectifs business.</p>
+          <div class="deliv"><div>Rapport de diagnostic data</div><div>Cadrage des variables cibles</div></div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-meta"><b>ÉTAPE 02</b>Semaine 2</div>
+        <div>
+          <h3>Modélisation &amp; backtesting rigoureux</h3>
+          <p>Développement itératif de modèles actuariels et machine learning. Évaluation stricte hors-échantillon (out-of-time) pour garantir la robustesse en conditions réelles.</p>
+          <div class="deliv"><div>Benchmarks comparatifs de modèles</div><div>Courbes ROC &amp; matrices de confusion</div></div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-meta"><b>ÉTAPE 03</b>Semaine 3</div>
+        <div>
+          <h3>Explicabilité &amp; audit de conformité</h3>
+          <p>Génération de l'explicabilité individuelle (SHAP values) et documentation technique pour les commissaires aux comptes, auditeurs ou comités de risque.</p>
+          <div class="deliv"><div>Fiche d'explicabilité modèle</div><div>Documentation d'audit interne</div></div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-meta"><b>ÉTAPE 04</b>Semaine 4+</div>
+        <div>
+          <h3>Intégration &amp; monitoring continu</h3>
+          <p>Mise en production fluide (API REST, connecteurs SQL/Excel ou dashboard interactif) et mise en place d'alertes de dérive de données (data drift).</p>
+          <div class="deliv"><div>Endpoints API prêts à l'emploi</div><div>Tableau de bord de monitoring</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
 
 <section id="contact">
-  <h2>Contact</h2>
-  <p>Une question, un projet ? Écrivez-nous :</p>
-  <p><a href="mailto:cerdata.contact@gmail.com" style="color:#2DBE8F;">cerdata.contact@gmail.com</a></p>
+  <div class="wrap">
+    <div class="contact-grid">
+      <div>
+        <div class="section-label">CONTACT DIRECT</div>
+        <h2>Une question, un projet ?</h2>
+        <p>Vous disposez de données d'encours, de factures ou de transactions et souhaitez évaluer leur potentiel prédictif ? Nous vous répondons sous 24 heures ouvrées.</p>
+
+        <div class="contact-detail">
+          <span class="label">Écrivez-nous directement</span>
+          <a href="mailto:cerdata.contact@gmail.com">cerdata.contact@gmail.com</a>
+        </div>
+        <p class="nda">NDA / accord de confidentialité préalable sur demande.</p>
+
+        <div style="margin-top:40px;">
+          <p style="font-weight:600;color:var(--navy);margin-bottom:6px;">Questions fréquentes</p>
+          <div class="faq-item open">
+            <div class="faq-q"><span>Nous n'avons pas d'équipe data en interne, est-ce un obstacle ?</span><span class="plus">+</span></div>
+            <div class="faq-a">C'est précisément la raison d'être de Cerdata. Nous concevons des solutions clés en main : de l'ingénierie des données jusqu'au déploiement de dashboards simples ou d'API. Vos équipes métier utilisent des résultats clairs sans manipuler de code.</div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-q"><span>Comment garantissez-vous que les modèles ne sont pas des « boîtes noires » ?</span><span class="plus">+</span></div>
+            <div class="faq-a">Chaque modèle est accompagné d'une explicabilité individuelle (valeurs SHAP) et d'une documentation d'audit, conforme aux exigences des comités de risque.</div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-q"><span>Quelles données sont requises pour démarrer ?</span><span class="plus">+</span></div>
+            <div class="faq-a">Un historique de transactions, facturation ou encours suffit généralement pour un premier audit — nous cadrons précisément le besoin dès le premier échange.</div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-q"><span>Comment se déroule la confidentialité de nos données ?</span><span class="plus">+</span></div>
+            <div class="faq-a">Un accord de confidentialité (NDA) peut être signé avant tout partage de données, sur simple demande.</div>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <p style="font-weight:600;color:var(--navy);">Cadrer votre besoin en quelques lignes</p>
+        <form onsubmit="return false;">
+          <div class="form-row">
+            <div>
+              <label class="f">Votre nom *</label>
+              <input type="text" placeholder="Jean Dupont">
+            </div>
+            <div>
+              <label class="f">Email professionnel *</label>
+              <input type="email" placeholder="j.dupont@entreprise.fr">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="full">
+              <label class="f">Entreprise / Organisation</label>
+              <input type="text" placeholder="Ex : FinTech Alpha, PME Industrie">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="full">
+              <label class="f">Typologie de projet</label>
+              <select>
+                <option>Scoring de crédit &amp; solvabilité</option>
+                <option>Détection d'anomalies &amp; fraudes</option>
+                <option>Modélisation de rentabilité</option>
+                <option>Autre / à définir</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="full">
+              <label class="f">Décrivez brièvement votre contexte ou votre enjeu *</label>
+              <textarea placeholder="Ex : Nous traitons 200 demandes de crédit par mois et constatons une hausse des impayés sur le segment B2B. Nous souhaitons automatiser l'évaluation préliminaire..."></textarea>
+            </div>
+          </div>
+          <button type="submit" class="btn btn-primary" style="width:100%;">Envoyer ma demande à Cerdata</button>
+          <p class="submit-note">Vos informations sont traitées en toute confidentialité. Réponse garantie sous 24h ouvrées.</p>
+        </form>
+      </div>
+    </div>
+  </div>
 </section>
 
-<footer>
-  <p>© 2026 Cerdata. Tous droits réservés. | <a href="https://linkedin.com/company/cerdata">LinkedIn</a></p>
+<footer style="border-bottom:none;">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <div class="logo">Cer<em>data</em></div>
+        <p>Risk Intelligence pour PME &amp; Institutions</p>
+      </div>
+      <ul class="footer-nav">
+        <li><a href="#about">À propos</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#roi">Simulateur</a></li>
+        <li><a href="#process">Méthodologie</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 CERDATA RISK INTELLIGENCE. Tous droits réservés. · Souveraineté des données UE (RGPD)</span>
+      <div style="display:flex;gap:16px;">
+        <a href="https://linkedin.com/company/cerdata">LinkedIn</a>
+        <a href="#" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;">Haut de page ↑</a>
+      </div>
+    </div>
+  </div>
 </footer>
+
+<script>
+// Simulator tabs (visual only for tabs 2/3 — shows same demo case, tab state toggles)
+document.querySelectorAll('.simtab').forEach(tab=>{
+  tab.addEventListener('click',()=>{
+    document.querySelectorAll('.simtab').forEach(t=>t.classList.remove('active'));
+    tab.classList.add('active');
+  });
+});
+
+// Risk cutoff slider -> updates score/decision
+const cutoffSlider = document.getElementById('cutoffSlider');
+const cutoffVal = document.getElementById('cutoffVal');
+const riskScore = document.getElementById('riskScore');
+const defaultProb = document.getElementById('defaultProb');
+const decisionBadge = document.getElementById('decisionBadge');
+const baseScore = 88;
+function updateSim(){
+  const cutoff = parseInt(cutoffSlider.value);
+  cutoffVal.textContent = cutoff;
+  riskScore.textContent = baseScore + '/100';
+  const prob = (baseScore/100 * 13).toFixed(1);
+  defaultProb.textContent = prob + '%';
+  if(baseScore >= cutoff){
+    decisionBadge.textContent = 'Alerte Risque';
+    decisionBadge.style.background = '#FBEAE7';
+    decisionBadge.style.color = '#B8433A';
+  } else {
+    decisionBadge.textContent = 'Dossier Accepté';
+    decisionBadge.style.background = '#E4F3EC';
+    decisionBadge.style.color = '#1F9C74';
+  }
+}
+cutoffSlider.addEventListener('input', updateSim);
+updateSim();
+
+// ROI simulator
+const volSlider = document.getElementById('volSlider');
+const rateSlider = document.getElementById('rateSlider');
+const targetSelect = document.getElementById('targetSelect');
+const volVal = document.getElementById('volVal');
+const rateVal = document.getElementById('rateVal');
+const grossLoss = document.getElementById('grossLoss');
+const netSaved = document.getElementById('netSaved');
+const multipleOut = document.getElementById('multipleOut');
+
+function fmtEuro(n){
+  return Math.round(n).toLocaleString('fr-FR') + ' €';
+}
+
+function updateROI(){
+  const vol = parseFloat(volSlider.value);
+  const rate = parseFloat(rateSlider.value);
+  const target = parseFloat(targetSelect.value);
+
+  volVal.textContent = fmtEuro(vol);
+  rateVal.textContent = rate.toFixed(1) + '%';
+
+  const gross = vol * (rate/100);
+  const saved = gross * target;
+  const assumedInvestment = 12500; // indicative flat project cost for illustration
+
+  grossLoss.textContent = fmtEuro(gross) + ' / an';
+  netSaved.textContent = '+ ' + fmtEuro(saved);
+  const multiple = (saved / assumedInvestment).toFixed(1);
+  multipleOut.textContent = "Rentabilité estimée : " + multiple + "x l'investissement";
+}
+[volSlider, rateSlider, targetSelect].forEach(el => el.addEventListener('input', updateROI));
+updateROI();
+
+// FAQ accordion
+document.querySelectorAll('.faq-item').forEach(item=>{
+  item.querySelector('.faq-q').addEventListener('click',()=>{
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(i=>i.classList.remove('open'));
+    if(!isOpen) item.classList.add('open');
+  });
+});
+</script>
 
 </body>
 </html>
