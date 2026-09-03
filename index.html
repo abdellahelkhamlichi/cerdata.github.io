@@ -9,9 +9,11 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600;8..60,700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
+.skip-link{position:absolute;left:-9999px;top:0;background:#0A2540;color:#fff;padding:12px 20px;z-index:100;text-decoration:none;}
+.skip-link:focus{left:12px;top:12px;}
 :root{
   --navy:#0A2540; --navy-deep:#061829; --emerald:#1F9C74; --emerald-soft:#E4F3EC;
-  --paper:#F7F5F0; --ink:#1C2530; --ink-soft:#5B6472; --line:#DDD8CC;
+  --paper:#F7F5F0; --ink:#1C2530; --ink-soft:#4E5761; --line:#DDD8CC;
   --amber:#B8763A; --red:#B8433A;
 }
 *{margin:0;padding:0;box-sizing:border-box;}
@@ -68,7 +70,7 @@ nav a:hover{color:var(--navy);}
 .simcard{border:1px solid var(--line);background:#fff;margin-top:56px;}
 .simcard-head{display:flex;justify-content:space-between;align-items:center;padding:22px 28px;border-bottom:1px solid var(--line);}
 .simtabs{display:flex;gap:4px;}
-.simtab{padding:9px 16px;font-size:.85rem;border:1px solid var(--line);background:var(--paper);cursor:pointer;color:var(--ink-soft);}
+.simtab{font-family:'Inter';padding:9px 16px;font-size:.85rem;border:1px solid var(--line);background:var(--paper);cursor:pointer;color:var(--ink-soft);}
 .simtab.active{background:var(--navy);color:#fff;border-color:var(--navy);}
 .simcard-body{padding:32px 28px;display:grid;grid-template-columns:1.2fr 1fr;gap:40px;}
 .case-id{font-size:.78rem;color:var(--ink-soft);margin-bottom:6px;}
@@ -192,16 +194,36 @@ footer{padding:40px 0;}
   .step{grid-template-columns:1fr;gap:10px;}
   .form-row{grid-template-columns:1fr;}
 }
+@media(max-width:520px){
+  .model-right{grid-template-columns:1fr;}
+  .sim-metrics{grid-template-columns:1fr;}
+  .service-top{grid-template-columns:1fr;gap:8px;}
+  .service-kpi{text-align:left;}
+  .simtabs{flex-wrap:wrap;}
+  .hero h1{font-size:1.8rem;}
+  .validation .btn{width:100%;text-align:center;}
+  section{padding:64px 0;}
+  .wrap{padding:0 20px;}
+}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto;}}
-a:focus-visible,.btn:focus-visible,.simtab:focus-visible{outline:2px solid var(--emerald);outline-offset:2px;}
+a:focus-visible,.btn:focus-visible,.simtab:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible,.faq-q:focus-visible{outline:2px solid var(--emerald);outline-offset:2px;border-radius:1px;}
+.simtab{position:relative;}
+.error-msg{color:#B8433A;font-size:.78rem;margin-top:4px;display:none;}
+.error-msg.show{display:block;}
+input.invalid,textarea.invalid{border-color:#B8433A;}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;}
+.form-success{display:none;background:var(--emerald-soft);color:#146C4F;padding:14px 16px;font-size:.88rem;margin-top:16px;}
+.form-success.show{display:block;}
 </style>
 </head>
 <body>
 
+<a href="#main" class="skip-link">Aller au contenu principal</a>
+
 <header>
   <div class="wrap bar">
     <div class="logo">Cer<em>data</em></div>
-    <nav><ul>
+    <nav aria-label="Navigation principale"><ul>
       <li><a href="#about">À propos</a></li>
       <li><a href="#services">Services</a></li>
       <li><a href="#roi">Simulateur ROI</a></li>
@@ -215,6 +237,7 @@ a:focus-visible,.btn:focus-visible,.simtab:focus-visible{outline:2px solid var(-
   </div>
 </header>
 
+<main id="main">
 <section class="hero" style="border-bottom:none;padding-bottom:0;">
   <div class="wrap">
     <div class="kicker">RISK INTELLIGENCE SYSTEM</div>
@@ -261,10 +284,10 @@ a:focus-visible,.btn:focus-visible,.simtab:focus-visible{outline:2px solid var(-
 
     <div class="simcard">
       <div class="simcard-head">
-        <div class="simtabs">
-          <div class="simtab active" data-tab="0">Scoring Crédit PME</div>
-          <div class="simtab" data-tab="1">Détection d'Anomalies</div>
-          <div class="simtab" data-tab="2">Stress Testing P&amp;L</div>
+        <div class="simtabs" role="tablist" aria-label="Type d'analyse de risque">
+          <button class="simtab active" role="tab" aria-selected="true" tabindex="0" data-tab="0">Scoring Crédit PME</button>
+          <button class="simtab" role="tab" aria-selected="false" tabindex="-1" data-tab="1">Détection d'Anomalies</button>
+          <button class="simtab" role="tab" aria-selected="false" tabindex="-1" data-tab="2">Stress Testing P&amp;L</button>
         </div>
       </div>
       <div class="simcard-body">
@@ -277,8 +300,8 @@ a:focus-visible,.btn:focus-visible,.simtab:focus-visible{outline:2px solid var(-
             Pertes de change &amp; rotation de stocks anormale
           </div>
           <div class="slider-row">
-            <label>Seuil d'arbitrage (cut-off) : <span class="val" id="cutoffVal">65</span>/100</label>
-            <input type="range" min="30" max="90" value="65" id="cutoffSlider">
+            <label for="cutoffSlider">Seuil d'arbitrage (cut-off) : <span class="val" id="cutoffVal">65</span>/100</label>
+            <input type="range" min="30" max="90" value="65" id="cutoffSlider" aria-valuemin="30" aria-valuemax="90" aria-valuenow="65" aria-describedby="cutoffVal">
           </div>
           <p class="foot-note">Sensibilité : Équilibrée · 3 dossiers sous surveillance</p>
         </div>
@@ -421,15 +444,15 @@ a:focus-visible,.btn:focus-visible,.simtab:focus-visible{outline:2px solid var(-
         <div class="cal mono">CALIBRATION 2026</div>
 
         <div class="slider-row">
-          <label>Volume annuel d'encours / facturation : <span class="val" id="volVal">5 000 000 €</span></label>
-          <input type="range" min="500000" max="30000000" step="500000" value="5000000" id="volSlider">
+          <label for="volSlider">Volume annuel d'encours / facturation : <span class="val" id="volVal">5 000 000 €</span></label>
+          <input type="range" min="500000" max="30000000" step="500000" value="5000000" id="volSlider" aria-describedby="volVal">
         </div>
         <div class="slider-row">
-          <label>Taux d'impayés / litiges actuel estimé : <span class="val" id="rateVal">2.4%</span></label>
-          <input type="range" min="0.5" max="6" step="0.1" value="2.4" id="rateSlider">
+          <label for="rateSlider">Taux d'impayés / litiges actuel estimé : <span class="val" id="rateVal">2.4%</span></label>
+          <input type="range" min="0.5" max="6" step="0.1" value="2.4" id="rateSlider" aria-describedby="rateVal">
         </div>
         <div class="slider-row">
-          <label>Objectif de réduction des défauts (modèle Cerdata) :</label>
+          <label for="targetSelect">Objectif de réduction des défauts (modèle Cerdata) :</label>
           <select id="targetSelect">
             <option value="0.25">Prudent (-25%)</option>
             <option value="0.38" selected>Cible (-38%)</option>
@@ -533,27 +556,29 @@ a:focus-visible,.btn:focus-visible,.simtab:focus-visible{outline:2px solid var(-
 
       <div>
         <p style="font-weight:600;color:var(--navy);">Cadrer votre besoin en quelques lignes</p>
-        <form onsubmit="return false;">
+        <form id="contactForm" novalidate>
           <div class="form-row">
             <div>
-              <label class="f">Votre nom *</label>
-              <input type="text" placeholder="Jean Dupont">
+              <label class="f" for="f-name">Votre nom *</label>
+              <input type="text" id="f-name" name="name" placeholder="Jean Dupont" required aria-required="true">
+              <div class="error-msg" id="err-name">Merci d'indiquer votre nom.</div>
             </div>
             <div>
-              <label class="f">Email professionnel *</label>
-              <input type="email" placeholder="j.dupont@entreprise.fr">
+              <label class="f" for="f-email">Email professionnel *</label>
+              <input type="email" id="f-email" name="email" placeholder="j.dupont@entreprise.fr" required aria-required="true">
+              <div class="error-msg" id="err-email">Merci d'indiquer un email valide.</div>
             </div>
           </div>
           <div class="form-row">
             <div class="full">
-              <label class="f">Entreprise / Organisation</label>
-              <input type="text" placeholder="Ex : FinTech Alpha, PME Industrie">
+              <label class="f" for="f-company">Entreprise / Organisation</label>
+              <input type="text" id="f-company" name="company" placeholder="Ex : FinTech Alpha, PME Industrie">
             </div>
           </div>
           <div class="form-row">
             <div class="full">
-              <label class="f">Typologie de projet</label>
-              <select>
+              <label class="f" for="f-type">Typologie de projet</label>
+              <select id="f-type" name="type">
                 <option>Scoring de crédit &amp; solvabilité</option>
                 <option>Détection d'anomalies &amp; fraudes</option>
                 <option>Modélisation de rentabilité</option>
@@ -563,17 +588,21 @@ a:focus-visible,.btn:focus-visible,.simtab:focus-visible{outline:2px solid var(-
           </div>
           <div class="form-row">
             <div class="full">
-              <label class="f">Décrivez brièvement votre contexte ou votre enjeu *</label>
-              <textarea placeholder="Ex : Nous traitons 200 demandes de crédit par mois et constatons une hausse des impayés sur le segment B2B. Nous souhaitons automatiser l'évaluation préliminaire..."></textarea>
+              <label class="f" for="f-message">Décrivez brièvement votre contexte ou votre enjeu *</label>
+              <textarea id="f-message" name="message" required aria-required="true" placeholder="Ex : Nous traitons 200 demandes de crédit par mois et constatons une hausse des impayés sur le segment B2B. Nous souhaitons automatiser l'évaluation préliminaire..."></textarea>
+              <div class="error-msg" id="err-message">Merci de décrire brièvement votre besoin.</div>
             </div>
           </div>
           <button type="submit" class="btn btn-primary" style="width:100%;">Envoyer ma demande à Cerdata</button>
           <p class="submit-note">Vos informations sont traitées en toute confidentialité. Réponse garantie sous 24h ouvrées.</p>
+          <div class="form-success" id="formSuccess" role="status">Merci, votre demande a bien été enregistrée. Nous revenons vers vous sous 24h ouvrées.</div>
         </form>
       </div>
     </div>
   </div>
 </section>
+
+</main>
 
 <footer style="border-bottom:none;">
   <div class="wrap">
@@ -601,11 +630,30 @@ a:focus-visible,.btn:focus-visible,.simtab:focus-visible{outline:2px solid var(-
 </footer>
 
 <script>
-// Simulator tabs (visual only for tabs 2/3 — shows same demo case, tab state toggles)
-document.querySelectorAll('.simtab').forEach(tab=>{
-  tab.addEventListener('click',()=>{
-    document.querySelectorAll('.simtab').forEach(t=>t.classList.remove('active'));
-    tab.classList.add('active');
+// Simulator tabs — full ARIA tablist with keyboard navigation (arrow keys + activation)
+const simTabs = Array.from(document.querySelectorAll('.simtab'));
+function activateTab(tab){
+  simTabs.forEach(t=>{
+    t.classList.remove('active');
+    t.setAttribute('aria-selected','false');
+    t.tabIndex = -1;
+  });
+  tab.classList.add('active');
+  tab.setAttribute('aria-selected','true');
+  tab.tabIndex = 0;
+  tab.focus();
+}
+simTabs.forEach((tab, i)=>{
+  tab.addEventListener('click', ()=> activateTab(tab));
+  tab.addEventListener('keydown', (e)=>{
+    let idx = i;
+    if(e.key === 'ArrowRight') idx = (i+1) % simTabs.length;
+    else if(e.key === 'ArrowLeft') idx = (i-1+simTabs.length) % simTabs.length;
+    else if(e.key === 'Home') idx = 0;
+    else if(e.key === 'End') idx = simTabs.length-1;
+    else return;
+    e.preventDefault();
+    activateTab(simTabs[idx]);
   });
 });
 
@@ -619,6 +667,7 @@ const baseScore = 88;
 function updateSim(){
   const cutoff = parseInt(cutoffSlider.value);
   cutoffVal.textContent = cutoff;
+  cutoffSlider.setAttribute('aria-valuenow', cutoff);
   riskScore.textContent = baseScore + '/100';
   const prob = (baseScore/100 * 13).toFixed(1);
   defaultProb.textContent = prob + '%';
@@ -669,12 +718,53 @@ function updateROI(){
 [volSlider, rateSlider, targetSelect].forEach(el => el.addEventListener('input', updateROI));
 updateROI();
 
+// Contact form — real client-side validation, accessible error states
+const contactForm = document.getElementById('contactForm');
+if(contactForm){
+  contactForm.addEventListener('submit', function(e){
+    e.preventDefault();
+    let firstInvalid = null;
+    const fields = [
+      {el: document.getElementById('f-name'), err: document.getElementById('err-name'), test: v => v.trim().length > 0},
+      {el: document.getElementById('f-email'), err: document.getElementById('err-email'), test: v => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)},
+      {el: document.getElementById('f-message'), err: document.getElementById('err-message'), test: v => v.trim().length > 0},
+    ];
+    fields.forEach(f=>{
+      const valid = f.test(f.el.value);
+      f.el.classList.toggle('invalid', !valid);
+      f.err.classList.toggle('show', !valid);
+      f.el.setAttribute('aria-invalid', String(!valid));
+      if(!valid && !firstInvalid) firstInvalid = f.el;
+    });
+    if(firstInvalid){
+      firstInvalid.focus();
+      return;
+    }
+    document.getElementById('formSuccess').classList.add('show');
+    contactForm.reset();
+  });
+}
+
 // FAQ accordion
 document.querySelectorAll('.faq-item').forEach(item=>{
-  item.querySelector('.faq-q').addEventListener('click',()=>{
+  const q = item.querySelector('.faq-q');
+  q.setAttribute('role','button');
+  q.setAttribute('tabindex','0');
+  q.setAttribute('aria-expanded', item.classList.contains('open') ? 'true' : 'false');
+  function toggle(){
     const isOpen = item.classList.contains('open');
-    document.querySelectorAll('.faq-item').forEach(i=>i.classList.remove('open'));
-    if(!isOpen) item.classList.add('open');
+    document.querySelectorAll('.faq-item').forEach(i=>{
+      i.classList.remove('open');
+      i.querySelector('.faq-q').setAttribute('aria-expanded','false');
+    });
+    if(!isOpen){
+      item.classList.add('open');
+      q.setAttribute('aria-expanded','true');
+    }
+  }
+  q.addEventListener('click', toggle);
+  q.addEventListener('keydown', (e)=>{
+    if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); toggle(); }
   });
 });
 </script>
