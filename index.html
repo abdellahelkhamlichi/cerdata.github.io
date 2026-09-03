@@ -226,7 +226,6 @@ input.invalid,textarea.invalid{border-color:#B8433A;}
     <nav aria-label="Navigation principale"><ul>
       <li><a href="#about">À propos</a></li>
       <li><a href="#services">Services</a></li>
-      <li><a href="#roi">Simulateur ROI</a></li>
       <li><a href="#process">Méthodologie</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul></nav>
@@ -250,7 +249,6 @@ input.invalid,textarea.invalid{border-color:#B8433A;}
     </div>
     <div class="hero-actions">
       <a href="#contact" class="btn btn-primary">Démarrer le projet</a>
-      <a href="#roi" class="btn btn-ghost">Simuler votre ROI</a>
     </div>
   </div>
 </section>
@@ -269,10 +267,10 @@ input.invalid,textarea.invalid{border-color:#B8433A;}
       </div>
     </div>
     <div class="model-right">
-      <div class="stat"><b>99.4%</b><span class="label">Précision du modèle</span><p>Sur jeu de validation hors-échantillon</p></div>
+      <div class="stat"><b>83.4%</b><span class="label">Précision du modèle</span><p>Sur jeu de validation hors-échantillon</p></div>
       <div class="stat"><b>&lt; 3 sem.</b><span class="label">Mise en production</span><p>De l'audit initial à l'API livrée</p></div>
-      <div class="stat"><b>&gt; 94%</b><span class="label">ROC-AUC</span><p>Discrimination des défaillances de paiement</p></div>
-      <div class="stat"><b>-38%</b><span class="label">Taux d'impayés</span><p>Réduction mesurée sur portefeuilles B2B</p></div>
+      <div class="stat"><b>&gt; 84%</b><span class="label">ROC-AUC</span><p>Discrimination des défaillances de paiement</p></div>
+      <div class="stat"><b>-28%</b><span class="label">Taux d'impayés</span><p>Réduction mesurée sur portefeuilles B2B</p></div>
     </div>
   </div>
 </div>
@@ -412,7 +410,7 @@ input.invalid,textarea.invalid{border-color:#B8433A;}
             <div class="sub">Identifier les irrégularités avant qu'elles ne coûtent cher</div>
             <div class="desc">Surveillance intelligente des flux de facturation, des mouvements de trésorerie et des écritures comptables pour repérer les signaux faibles de défaillance.</div>
           </div>
-          <div class="service-kpi">99.1%<span>précision sur alertes</span></div>
+          <div class="service-kpi">81.1%<span>précision sur alertes</span></div>
         </div>
       </div>
 
@@ -432,49 +430,6 @@ input.invalid,textarea.invalid{border-color:#B8433A;}
   </div>
 </section>
 
-<section id="roi">
-  <div class="wrap">
-    <div class="section-label">SIMULATEUR FINANCIER</div>
-    <h2 style="font-size:1.9rem;font-weight:500;color:var(--navy);max-width:24ch;">Quantifiez les pertes évitées sur vos créances.</h2>
-    <p style="color:var(--ink-soft);max-width:64ch;margin-top:14px;">Sur un portefeuille de créances B2B standard, le passage d'une revue manuelle à un modèle actuariel de scoring permet une baisse moyenne de 30% à 45% des créances douteuses, tout en accélérant les temps de réponse de 70%.</p>
-
-    <div class="roi-box">
-      <div class="roi-controls">
-        <h3>Simulateur d'impact de risque</h3>
-        <div class="cal mono">CALIBRATION 2026</div>
-
-        <div class="slider-row">
-          <label for="volSlider">Volume annuel d'encours / facturation : <span class="val" id="volVal">5 000 000 €</span></label>
-          <input type="range" min="500000" max="30000000" step="500000" value="5000000" id="volSlider" aria-describedby="volVal">
-        </div>
-        <div class="slider-row">
-          <label for="rateSlider">Taux d'impayés / litiges actuel estimé : <span class="val" id="rateVal">2.4%</span></label>
-          <input type="range" min="0.5" max="6" step="0.1" value="2.4" id="rateSlider" aria-describedby="rateVal">
-        </div>
-        <div class="slider-row">
-          <label for="targetSelect">Objectif de réduction des défauts (modèle Cerdata) :</label>
-          <select id="targetSelect">
-            <option value="0.25">Prudent (-25%)</option>
-            <option value="0.38" selected>Cible (-38%)</option>
-            <option value="0.48">Optimisé (-48%)</option>
-          </select>
-        </div>
-      </div>
-      <div class="roi-out">
-        <div class="row" style="border-top:none;">
-          <span class="label">Pertes brutes sans modèle</span>
-          <div class="big" id="grossLoss">120 000 € / an</div>
-        </div>
-        <div class="row">
-          <span class="label">Trésorerie nette préservée</span>
-          <div class="big green" id="netSaved">+ 45 600 €</div>
-        </div>
-        <div class="multiple" id="multipleOut">Rentabilité estimée : 3.6x l'investissement</div>
-        <a href="#contact" class="btn btn-primary" style="margin-top:24px;">Valider ces chiffres</a>
-      </div>
-    </div>
-  </div>
-</section>
 
 <section id="process">
   <div class="wrap">
@@ -614,7 +569,6 @@ input.invalid,textarea.invalid{border-color:#B8433A;}
       <ul class="footer-nav">
         <li><a href="#about">À propos</a></li>
         <li><a href="#services">Services</a></li>
-        <li><a href="#roi">Simulateur</a></li>
         <li><a href="#process">Méthodologie</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
@@ -683,40 +637,6 @@ function updateSim(){
 }
 cutoffSlider.addEventListener('input', updateSim);
 updateSim();
-
-// ROI simulator
-const volSlider = document.getElementById('volSlider');
-const rateSlider = document.getElementById('rateSlider');
-const targetSelect = document.getElementById('targetSelect');
-const volVal = document.getElementById('volVal');
-const rateVal = document.getElementById('rateVal');
-const grossLoss = document.getElementById('grossLoss');
-const netSaved = document.getElementById('netSaved');
-const multipleOut = document.getElementById('multipleOut');
-
-function fmtEuro(n){
-  return Math.round(n).toLocaleString('fr-FR') + ' €';
-}
-
-function updateROI(){
-  const vol = parseFloat(volSlider.value);
-  const rate = parseFloat(rateSlider.value);
-  const target = parseFloat(targetSelect.value);
-
-  volVal.textContent = fmtEuro(vol);
-  rateVal.textContent = rate.toFixed(1) + '%';
-
-  const gross = vol * (rate/100);
-  const saved = gross * target;
-  const assumedInvestment = 12500; // indicative flat project cost for illustration
-
-  grossLoss.textContent = fmtEuro(gross) + ' / an';
-  netSaved.textContent = '+ ' + fmtEuro(saved);
-  const multiple = (saved / assumedInvestment).toFixed(1);
-  multipleOut.textContent = "Rentabilité estimée : " + multiple + "x l'investissement";
-}
-[volSlider, rateSlider, targetSelect].forEach(el => el.addEventListener('input', updateROI));
-updateROI();
 
 // Contact form — real client-side validation, accessible error states
 const contactForm = document.getElementById('contactForm');
