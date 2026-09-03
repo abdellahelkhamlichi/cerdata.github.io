@@ -275,46 +275,7 @@ input.invalid,textarea.invalid{border-color:#B8433A;}
   </div>
 </div>
 
-<section style="padding-top:70px;">
-  <div class="wrap">
-    <div class="section-label">SIMULATEUR INTERACTIF DU RISQUE</div>
-    <h2 style="font-size:1.8rem;font-weight:500;color:var(--navy);">Inspectez les facteurs SHAP et les probabilités d'arbitrage.</h2>
 
-    <div class="simcard">
-      <div class="simcard-head">
-        <div class="simtabs" role="tablist" aria-label="Type d'analyse de risque">
-          <button class="simtab active" role="tab" aria-selected="true" tabindex="0" data-tab="0">Scoring Crédit PME</button>
-          <button class="simtab" role="tab" aria-selected="false" tabindex="-1" data-tab="1">Détection d'Anomalies</button>
-          <button class="simtab" role="tab" aria-selected="false" tabindex="-1" data-tab="2">Stress Testing P&amp;L</button>
-        </div>
-      </div>
-      <div class="simcard-body">
-        <div>
-          <div class="case-id mono">DOS-845</div>
-          <div class="case-name">Négoce Import Métaux</div>
-          <div class="case-sector">Secteur : Matières premières</div>
-          <div class="factor-box">
-            <span class="label">FACTEUR DOMINANT</span>
-            Pertes de change &amp; rotation de stocks anormale
-          </div>
-          <div class="slider-row">
-            <label for="cutoffSlider">Seuil d'arbitrage (cut-off) : <span class="val" id="cutoffVal">65</span>/100</label>
-            <input type="range" min="30" max="90" value="65" id="cutoffSlider" aria-valuemin="30" aria-valuemax="90" aria-valuenow="65" aria-describedby="cutoffVal">
-          </div>
-          <p class="foot-note">Sensibilité : Équilibrée · 3 dossiers sous surveillance</p>
-        </div>
-        <div class="sim-metrics">
-          <div class="sim-metric"><b id="riskScore">88/100</b><span>Score de risque</span></div>
-          <div class="sim-metric"><b id="defaultProb">11.4%</b><span>Probabilité de défaut</span></div>
-          <div class="sim-metric" style="grid-column:1/-1;">
-            <span>Décision</span>
-            <div class="decision-alert" id="decisionBadge">Alerte Risque</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
 
 <section id="about">
   <div class="wrap">
