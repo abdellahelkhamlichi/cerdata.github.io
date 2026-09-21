@@ -218,14 +218,54 @@ input.invalid,textarea.invalid{border-color:#B8433A;}
 .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;}
 .form-success{display:none;background:var(--emerald-soft);color:#146C4F;padding:14px 16px;font-size:.88rem;margin-top:16px;}
 .form-success.show{display:block;}
+/* Refined visual system */
+:root{--ink:#172230;--ink-soft:#5d6874;--line:#dfe5e2;--paper:#f4f7f5;--emerald:#12a886;--emerald-soft:#dff5ed;--navy:#09263f;--navy-deep:#061a2c;--orange:#ed8a4a;}
+body{background:var(--paper);font-size:16px;overflow-x:hidden;}
+header{background:rgba(244,247,245,.88);border-bottom-color:rgba(9,38,63,.12);}
+header .bar{padding:16px 0;}
+.logo{font-family:'IBM Plex Mono',monospace;letter-spacing:-.05em;font-size:1.12rem;}
+header .bar>img,footer img{height:32px!important;width:auto;object-fit:contain;object-position:left;}
+nav ul{gap:25px;} nav a{font-size:.8rem;font-weight:600;letter-spacing:.01em;}
+.menu-toggle{display:none;border:1px solid var(--navy);background:transparent;color:var(--navy);padding:9px 11px;font:600 .7rem 'IBM Plex Mono',monospace;cursor:pointer;}
+.btn{border-radius:3px;padding:12px 19px;letter-spacing:.01em;}
+.btn-primary{box-shadow:0 8px 18px rgba(9,38,63,.14);}
+.hero{position:relative;padding:92px 0 84px!important;border-bottom:1px solid var(--line)!important;background:radial-gradient(circle at 86% 15%,rgba(18,168,134,.15),transparent 29%),linear-gradient(135deg,#f4f7f5 0%,#edf4f1 52%,#f8faf8 100%);}
+.hero:after{content:"";position:absolute;inset:auto 0 0;height:1px;background:linear-gradient(90deg,transparent,var(--emerald),transparent);opacity:.45;}
+.hero .wrap{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(380px,.95fr);gap:72px;align-items:center;}
+.kicker{font-family:'IBM Plex Mono',monospace;font-size:.72rem;letter-spacing:.12em;margin-bottom:22px;}
+.hero h1{font-size:clamp(3rem,5.5vw,5.25rem);letter-spacing:-.055em;line-height:1.01;max-width:10ch;margin-bottom:25px;}
+.hero-lede{font-size:1.05rem;line-height:1.7;max-width:51ch;}
+.tags{margin:30px 0 34px;gap:8px;}.tag{border-color:rgba(9,38,63,.16);background:rgba(255,255,255,.4);border-radius:99px;padding:6px 12px;font-size:.74rem;}
+.hero-actions{align-items:center;}.hero-actions:after{content:'Réponse sous 24h ouvrées';font-family:'IBM Plex Mono',monospace;color:var(--ink-soft);font-size:.68rem;margin-left:4px;}
+.hero-visual{position:relative;min-height:420px;background:var(--navy);color:#fff;padding:24px;box-shadow:22px 24px 0 rgba(18,168,134,.12);overflow:hidden;}
+.hero-visual:before{content:"";position:absolute;width:300px;height:300px;border:1px solid rgba(90,220,187,.25);border-radius:50%;right:-100px;top:-90px;}
+.visual-top{display:flex;justify-content:space-between;align-items:center;font:10px 'IBM Plex Mono',monospace;letter-spacing:.08em;color:#9fb2c0;border-bottom:1px solid rgba(255,255,255,.15);padding-bottom:18px;}
+.live-dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:#52e0b7;margin-right:6px;box-shadow:0 0 0 5px rgba(82,224,183,.13);}
+.visual-title{font-family:'Source Serif 4',serif;font-size:1.75rem;line-height:1.15;max-width:11ch;margin:35px 0 22px;}
+.visual-chart{height:112px;position:relative;border-bottom:1px solid rgba(255,255,255,.2);background:repeating-linear-gradient(to bottom,transparent 0 27px,rgba(255,255,255,.08) 28px);}
+.visual-chart svg{width:100%;height:100%;overflow:visible;}.chart-line{fill:none;stroke:#54dfb7;stroke-width:3;stroke-linecap:round;stroke-linejoin:round;filter:drop-shadow(0 0 5px rgba(84,223,183,.45));}.chart-area{fill:url(#area);opacity:.35;}
+.visual-bottom{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:22px;}.visual-stat{border-left:1px solid rgba(255,255,255,.2);padding-left:12px;}.visual-stat b{display:block;font:1.35rem 'Source Serif 4',serif;}.visual-stat span{font-size:.66rem;color:#9fb2c0;display:block;margin-top:4px;}
+.visual-badge{position:absolute;right:24px;top:185px;background:#e7fbf4;color:#087f62;padding:8px 11px;font:600 .68rem 'IBM Plex Mono',monospace;transform:rotate(2deg);}
+.model-strip{background:var(--navy-deep);}.model-left{padding:48px;}.model-right{padding:48px;}.model-tag{color:#56dcb5;}
+section{padding:112px 0;} .section-label{font-family:'IBM Plex Mono',monospace;font-size:.68rem;letter-spacing:.12em;}
+h2{letter-spacing:-.035em;} .about-grid h2,.contact-grid h2{font-size:clamp(2.3rem,4vw,3.6rem);letter-spacing:-.05em;line-height:1.06;}
+.pillar,.service-row,.step{transition:transform .25s ease,background .25s ease;}.pillar:hover{transform:translateY(-4px);}
+.validation{border-radius:3px;box-shadow:16px 16px 0 rgba(18,168,134,.12);}
+.portfolio-card,.simcard,.roi-box{border-radius:3px;box-shadow:0 16px 36px rgba(9,38,63,.06);}
+.portfolio-badge{border-radius:99px;}.service-kpi{font-size:1.55rem;}
+.contact-grid{align-items:start;}.contact-grid>div:last-child{background:#fff;border:1px solid var(--line);padding:34px;box-shadow:12px 12px 0 rgba(18,168,134,.1);}
+footer{background:#fff;} .footer-bottom{border-top-color:var(--line);}
+@media(max-width:860px){.hero .wrap{grid-template-columns:1fr;gap:48px;}.hero h1{font-size:clamp(3rem,10vw,4.5rem);}.hero-visual{min-height:360px;}.contact-grid>div:last-child{padding:24px;}}
+@media(max-width:860px){header .bar{position:relative;flex-wrap:wrap;gap:12px;}.menu-toggle{display:block;margin-left:auto;}header nav{display:none;width:100%;order:4;}header.nav-open nav{display:block;}header nav ul{flex-direction:column;gap:0;padding:10px 0;border-top:1px solid var(--line);}header nav li{padding:8px 0;}header .header-cta{margin-left:auto;}header .header-cta .btn-ghost{display:none;}}
+@media(max-width:520px){.hero{padding-top:58px!important;}.hero h1{font-size:3.15rem;}.hero-actions{flex-wrap:wrap;}.hero-actions:after{width:100%;margin-top:10px;}.hero-visual{padding:18px;min-height:350px;}.visual-title{font-size:1.45rem;margin-top:28px;}.visual-bottom{gap:8px}.visual-stat b{font-size:1.1rem}.visual-badge{right:18px;top:155px;font-size:.58rem}.model-left,.model-right{padding:32px 24px;}}
 </style>
 </head>
 <body>
 <a href="#main" class="skip-link">Aller au contenu principal</a>
 <header>
 <div class="wrap bar">
-<img src="logo.png" alt="Cerdata" style="height:36px;">
-<nav aria-label="Navigation principale"><ul>
+<a href="#main" aria-label="Cerdata, accueil"><img src="logo.png" alt="Cerdata" style="height:36px;"></a>
+<nav id="primary-navigation" aria-label="Navigation principale"><ul>
 <li><a href="#about">À propos</a></li>
 <li><a href="#services">Services</a></li>
 <li><a href="#portfolio">Portfolio</a></li>
@@ -233,6 +273,7 @@ input.invalid,textarea.invalid{border-color:#B8433A;}
 <li><a href="#process">Méthodologie</a></li>
 <li><a href="#contact">Contact</a></li>
 </ul></nav>
+<button class="menu-toggle" type="button" aria-expanded="false" aria-controls="primary-navigation">Menu</button>
 <div class="header-cta">
 <a href="#contact" class="btn btn-ghost">Audit offert</a>
 <a href="#contact" class="btn btn-primary">Prendre contact</a>
@@ -252,6 +293,25 @@ input.invalid,textarea.invalid{border-color:#B8433A;}
 </div>
 <div class="hero-actions">
 <a href="#contact" class="btn btn-primary">Démarrer le projet</a>
+<a href="#portfolio" class="btn btn-ghost">Voir les preuves</a>
+</div>
+</div>
+<div class="hero-visual" aria-label="Aperçu du tableau de bord de risque Cerdata">
+<div class="visual-top"><span><i class="live-dot"></i>MONITORING ACTIF</span><span>PORTEFEUILLE B2B · 2026</span></div>
+<div class="visual-title">Le risque devient une décision.</div>
+<div class="visual-chart">
+<svg viewBox="0 0 500 112" role="img" aria-label="Courbe de risque en baisse">
+<defs><linearGradient id="area" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#54dfb7"/><stop offset="1" stop-color="#54dfb7" stop-opacity="0"/></linearGradient></defs>
+<path class="chart-area" d="M0,91 C35,86 45,74 72,79 S112,95 139,71 S183,52 208,59 S251,77 278,50 S319,40 346,46 S383,30 409,35 S454,20 500,10 V112 H0 Z"></path>
+<path class="chart-line" d="M0,91 C35,86 45,74 72,79 S112,95 139,71 S183,52 208,59 S251,77 278,50 S319,40 346,46 S383,30 409,35 S454,20 500,10"></path>
+</svg>
+</div>
+<div class="visual-badge">↓ 28% D'IMPAYÉS</div>
+<div class="visual-bottom">
+<div class="visual-stat"><b>83.4%</b><span>PRÉCISION</span></div>
+<div class="visual-stat"><b>&lt; 3 sem.</b><span>MISE EN PROD.</span></div>
+<div class="visual-stat"><b>+2.4 pts</b><span>MARGE SÉCURISÉE</span></div>
+</div>
 </div>
 </div>
 </section>
@@ -595,6 +655,21 @@ input.invalid,textarea.invalid{border-color:#B8433A;}
 </div>
 </footer>
 <script>
+// Mobile navigation
+const siteHeader = document.querySelector('header');
+const menuToggle = document.querySelector('.menu-toggle');
+if(siteHeader && menuToggle){
+menuToggle.addEventListener('click', ()=>{
+const isOpen = siteHeader.classList.toggle('nav-open');
+menuToggle.setAttribute('aria-expanded', String(isOpen));
+menuToggle.textContent = isOpen ? 'Fermer' : 'Menu';
+});
+siteHeader.querySelectorAll('nav a').forEach(link=>link.addEventListener('click', ()=>{
+siteHeader.classList.remove('nav-open');
+menuToggle.setAttribute('aria-expanded','false');
+menuToggle.textContent = 'Menu';
+}));
+}
 // Simulator tabs — full ARIA tablist with keyboard navigation (arrow keys + activation)
 const simTabs = Array.from(document.querySelectorAll('.simtab'));
 function activateTab(tab){
