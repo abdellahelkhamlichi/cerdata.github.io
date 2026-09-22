@@ -468,8 +468,77 @@ a:focus-visible,.btn:focus-visible,input:focus-visible,select:focus-visible,text
 </div>
 </div>
 
-<p class="foot-note">D'autres études de cas (scoring de crédit Bâle II/III, gestion de portefeuille et VaR) sont en cours de publication.</p>
+<div class="portfolio-card">
+<div class="portfolio-head">
+<div>
+<h3>Tarification de crédit — Scoring &amp; Pricing Bâle II/III</h3>
+<div class="sub">Probabilité de défaut, LGD, EAD sur 150 000 emprunteurs réels</div>
+<div class="desc">Moteur de tarification crédit complet : Probabilité de Défaut (Logistic Regression + benchmark XGBoost), calibration isotonique, LGD/EAD documentées, conversion en taux d'intérêt ajusté au risque selon le framework Bâle.</div>
 </div>
+<div class="status-tag">Étude validée</div>
+</div>
+<div class="portfolio-kpis">
+<div class="pf-kpi"><b class="tabular">150K</b><span>emprunteurs analysés</span></div>
+<div class="pf-kpi"><b class="tabular">0.868</b><span>ROC-AUC XGBoost (PD)</span></div>
+<div class="pf-kpi"><b class="tabular">4.9x→1.002</b><span>correction de calibration</span></div>
+<div class="pf-kpi"><b class="tabular">7.2%–28.4%</b><span>taux ajusté au risque</span></div>
+</div>
+<div class="portfolio-body">
+<div>
+<div class="stack-chips"><span class="chip">Python</span><span class="chip">scikit-learn</span><span class="chip">XGBoost</span><span class="chip">Streamlit</span></div>
+<p style="color:var(--ink-soft);font-size:.92rem;margin-bottom:16px;">Un biais critique de calibration (4.9x de surestimation) a été détecté puis corrigé par calibration isotonique — une validation essentielle dès qu'un modèle alimente un calcul monétaire, pas seulement une décision binaire.</p>
+<blockquote>La détection et la correction explicite d'un biais de calibration reflète la rigueur de validation attendue dans une décision de crédit réglementée.</blockquote>
+</div>
+<div>
+<div class="deliverables">
+<div>Notebook complet (PD, LGD, EAD, pricing)</div>
+<div>Dashboard Streamlit — simulation de prêt en temps réel</div>
+<div>Rapport PDF de synthèse</div>
+<div>Code source ouvert sur GitHub</div>
+</div>
+<div class="portfolio-actions">
+<a href="https://github.com/abdellahelkhamlichi/credit-risk-loan-pricing" target="_blank" class="btn btn-primary">Voir le code sur GitHub</a>
+<a href="#" target="_blank" class="btn btn-ghost">Ouvrir le dashboard</a>
+</div>
+</div>
+</div>
+</div>
+
+<div class="portfolio-card">
+<div class="portfolio-head">
+<div>
+<h3>Gestion de portefeuille — VaR &amp; Optimisation de Markowitz</h3>
+<div class="sub">Value at Risk, CVaR et frontière efficiente sur données de marché réelles</div>
+<div class="desc">Analyse et optimisation de portefeuille (SPY, QQQ, TLT, GLD, IEF) : VaR historique/paramétrique/Monte Carlo, CVaR, frontière efficiente de Markowitz, et stress testing sur les crises 2008 et 2020.</div>
+</div>
+<div class="status-tag">Étude validée</div>
+</div>
+<div class="portfolio-kpis">
+<div class="pf-kpi"><b class="tabular">3</b><span>méthodes de VaR comparées</span></div>
+<div class="pf-kpi"><b class="tabular">20K</b><span>simulations Monte Carlo</span></div>
+<div class="pf-kpi"><b class="tabular">5 actifs</b><span>multi-classes diversifiés</span></div>
+<div class="pf-kpi"><b class="tabular">2</b><span>scénarios de crise testés</span></div>
+</div>
+<div class="portfolio-body">
+<div>
+<div class="stack-chips"><span class="chip">Python</span><span class="chip">yfinance</span><span class="chip">SciPy</span><span class="chip">Streamlit</span></div>
+<p style="color:var(--ink-soft);font-size:.92rem;margin-bottom:16px;">Le rapport PDF est généré automatiquement à partir des résultats calculés (aucun chiffre saisi manuellement), garantissant une traçabilité complète entre l'analyse et la restitution.</p>
+<blockquote>Comparer trois méthodes de VaR sur les mêmes données révèle où les hypothèses de normalité sous-estiment le risque réel — un réflexe que nous appliquons à toute modélisation de risque.</blockquote>
+</div>
+<div>
+<div class="deliverables">
+<div>Notebook complet (VaR, CVaR, optimisation, stress test)</div>
+<div>Dashboard Streamlit — composition de portefeuille</div>
+<div>Rapport PDF généré automatiquement</div>
+<div>Code source ouvert sur GitHub</div>
+</div>
+<div class="portfolio-actions">
+<a href="https://github.com/abdellahelkhamlichi/portfolio-risk-optimization-" target="_blank" class="btn btn-primary">Voir le code sur GitHub</a>
+<a href="#" target="_blank" class="btn btn-ghost">Ouvrir le dashboard</a>
+</div>
+</div>
+</div>
+</div></div>
 </section>
 
 <section id="process">
