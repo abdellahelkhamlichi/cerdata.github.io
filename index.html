@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Cerdata — Risk Intelligence pour PME & Institutions Financières</title>
 <meta name="description" content="Cerdata conçoit des modèles actuariels et de machine learning pour le scoring de crédit et la détection d'anomalies financières.">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%2316211D'/%3E%3Crect x='6' y='16' width='4' height='10' fill='%23EFF1EA'/%3E%3Crect x='14' y='10' width='4' height='16' fill='%23EFF1EA'/%3E%3Crect x='22' y='13' width='4' height='13' fill='%23EFF1EA'/%3E%3Cline x1='4' y1='14' x2='28' y2='14' stroke='%23B33F2E' stroke-width='1.5'/%3E%3C/svg%3E">
+<link rel="icon" href="logo.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,650&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -56,7 +56,7 @@ section{padding:104px 0;border-bottom:1px solid var(--rule);}
 header{position:sticky;top:0;background:rgba(239,241,234,.94);backdrop-filter:blur(8px);z-index:50;border-bottom:1px solid var(--rule);}
 header .bar{display:flex;justify-content:space-between;align-items:center;padding:18px 0;}
 .brand{display:flex;align-items:center;gap:11px;text-decoration:none;}
-.brand svg{display:block;}
+.brand-logo{display:block;width:44px;height:auto;flex-shrink:0;}
 .brand-word{font-family:'Fraunces',serif;font-weight:600;font-size:1.32rem;color:var(--ink);}
 nav ul{list-style:none;display:flex;gap:30px;}
 nav a{text-decoration:none;font-size:.93rem;color:var(--ink-soft);}
@@ -232,14 +232,7 @@ a:focus-visible,.btn:focus-visible,input:focus-visible,select:focus-visible,text
 <header>
 <div class="wrap bar">
 <a href="#main" class="brand" aria-label="Cerdata — accueil">
-<svg width="30" height="30" viewBox="0 0 32 32" fill="none">
-<rect x="6" y="16" width="4" height="10" fill="var(--ink)"/>
-<rect x="14" y="10" width="4" height="16" fill="var(--ink)"/>
-<rect x="22" y="13" width="4" height="13" fill="var(--ink)"/>
-<line x1="3" y1="14" x2="29" y2="14" stroke="var(--signal)" stroke-width="1.6"/>
-<line x1="3" y1="14" x2="3" y2="17" stroke="var(--signal)" stroke-width="1.6"/>
-<line x1="29" y1="14" x2="29" y2="17" stroke="var(--signal)" stroke-width="1.6"/>
-</svg>
+<img class="brand-logo" src="logo.svg" alt="Cerdata logo" width="44" height="44">
 <span class="brand-word">Cerdata</span>
 </a>
 <nav aria-label="Navigation principale"><ul>
